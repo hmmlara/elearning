@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('education');
             $table->string('experience');
-            $table->string('desceiption')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
