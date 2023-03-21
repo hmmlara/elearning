@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Batch extends Model
 {
     use HasFactory;
+    public function registers(){
+        return $this->hasMany(Register::class);
+    }
+   
 }
