@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SpecialityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->name('index');
+
+Route::get('about',function(){
+    return view('about');
+})->name('about');
+
+Route::get('courses',function(){
+    return view('courses');
+})->name('courses');
+
+
+Route::group(['prefix'=>'admin'],function(){
+    Route::view('/','admin.index')->name('admin.index');
+    Route::resource('courses',CourseController::class);
+
+    Route::resource('specialities',SpecialityController::class);
+
+
 });
+
