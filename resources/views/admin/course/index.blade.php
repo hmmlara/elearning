@@ -40,7 +40,8 @@
                                 <tr>
                                     <td>{{$from++}}</td>
                                     <td>{{$course->title}}</td>
-                                    <td>{{$course->description}}</td>
+                                    <td>{{$course->category->name}}</td>
+
                                     <td>{{$course->duration}}</td>
                                     <td>{{$course->hours}}</td>
                                     <td>{{$course->total_topics}}</td>

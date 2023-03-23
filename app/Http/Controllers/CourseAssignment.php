@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class CourseAssignment extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,6 @@ class CourseController extends Controller
     public function index()
     {
         //
-        $courses=Course::paginate(3);
-        $from=$courses->firstItem();
-        $to=$courses->lastItem();
-        // dd($courses);
-        return view('admin.course.index',['courses'=>$courses,'from'=>$from]);
     }
 
     /**

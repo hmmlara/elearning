@@ -46,8 +46,8 @@
             </a>
 					</li>
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('speciality.index')}}">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Speciality</span>
+						<a class="sidebar-link" href="{{route('trainer_speciality.index')}}">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Trainer Speciality</span>
             </a>
 					</li>
 

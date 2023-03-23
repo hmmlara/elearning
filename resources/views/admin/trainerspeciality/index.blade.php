@@ -24,21 +24,27 @@
                         <thead>
                             <tr>
                                 <th>NO</th>
-                                <th>Id</th>
-                                <th class="d-none d-xl-table-cell">Trainer_id</th>
-                                <th class="d-none d-xl-table-cell">Speciality_id</th>
+                                <th class="d-none d-xl-table-cell">Trainer Name</th>
+                                <th class="d-none d-xl-table-cell">Speciality Name</th>
+                              
                                 <th class="d-none d-xl-table-cell">Actions</th>
 
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($trainerspecialities as $trainerspeciality)
+                            @foreach ($trainers as $trainer)
                                 <tr>
                                     <td>{{$from++}}</td>
-                                    <td>{{$trainerspeciality->id}}</td>
-                                    <td>{{$trainerspeciality->trainer_id}}</td>
-                                    <td>{{$trainerspeciality->speciality_id}}</td>
+
+                                    <td>{{$trainer->name}}</td>
+                                    <td>
+                                        @foreach($trainer->specialities as $speciality)
+                                            
+                                            <span>{{$speciality->name}}</span>
+                                        @endforeach
+                                    </td>
+                                    {{-- <td>{{$trainerspeciality->speciality_id}}</td> --}}
                                     <td class='d-none d-md-table-cell'><a href="" class="btn btn-success">View</a>
                                         <a href="" class="btn btn-success">Edit</a>
                                         <a href="" class="btn btn-success">Delete</a>
@@ -54,7 +60,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                {{$trainerspecialities->links('pagination::bootstrap-5')}}
+                {{$trainers->links('pagination::bootstrap-5')}}
             </div>
         </div>
 

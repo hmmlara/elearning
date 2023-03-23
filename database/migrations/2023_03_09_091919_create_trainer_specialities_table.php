@@ -21,7 +21,7 @@ return new class extends Migration
                 ->references('id')->on('trainers')
                 ->onDelete('cascade');
             $table->foreign('speciality_id')
-                ->references('id')->on('specilities')
+                ->references('id')->on('specialities')
                 ->onDelete('cascade');
             
             $table->timestamps();

@@ -9,5 +9,8 @@ class Speciality extends Model
 {
     use HasFactory;
     
-    protected $table = 'specilities';
+    // protected $table = 'specilities';
+    public function trainers(){
+        return $this->belongsToMany(Trainer::class, 'trainer_specialities');
+    }
 }

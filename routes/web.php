@@ -33,5 +33,5 @@ Route::get('courses',function(){
 Route::group(['prefix'=>'admin'],function(){
     Route::view('home','admin.index')->name('admin.index');
     Route::resource('courses',CourseController::class);
-    Route::resource('speciality',TrainerSpecialityController::class);
+    Route::resource('trainer_speciality',TrainerSpecialityController::class);
 });
