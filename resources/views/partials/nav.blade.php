@@ -12,12 +12,14 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="{{ asset('img/icons/icon-48x48.png') }}" />
-
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
     <title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -34,16 +36,23 @@
                         Pages
                     </li>
 
-                    <li class="sidebar-item active">
-                        <a class="sidebar-link" href="index.html">
+                    <li class="sidebar-item {{ (request()->is('admin')) ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('admin.index') }}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                    <li class="sidebar-item {{ (request()->segment(2) == 'courses') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('courses.index') }}">
+                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Courses</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ (request()->segment(2) == 'schedules') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('schedules.index') }}">
+                            <i class="align-middle" data-feather="list"></i> <span
+                                class="align-middle">Schedule</span>
                         </a>
                     </li>
 
