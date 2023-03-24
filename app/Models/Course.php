@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function schdules(){
+        return $this->hasMany(Schedule::class);
+    }
 }
