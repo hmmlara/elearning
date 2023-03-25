@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Category::all();
+        return view('admin.course.create',['categories'=>$categories]);
     }
 
     /**
@@ -39,7 +41,21 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'category_id'=>'required',
+            'duration'=>'required',
+            'ojt_duration'=>'required',
+            'total_topics'=>'required',
+            'hours'=>'required',
+            'fee'=>'required',
+            'discount'=>'required',
+            'learning_outcome'=>'required'
+        ]);
+        Course::create($request->all());
+        // dd($request->all());
+        return redirect()->route('courses.index');
     }
 
     /**
@@ -61,7 +77,9 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories=Category::all();
+        $course=Course::find($id);
+        return view('admin.course.edit',['course'=>$course,'categories'=>$categories]);
     }
 
     /**
@@ -71,9 +89,24 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'category_id'=>'required',
+            'duration'=>'required',
+            'ojt_duration'=>'required',
+            'total_topics'=>'required',
+            'hours'=>'required',
+            'fee'=>'required',
+            'discount'=>'required',
+            'learning_outcome'=>'required'
+        ]);
+        $course->update($request->all());
+        // dd($request->all());
+        return redirect()->route('courses.index');
     }
 
     /**
