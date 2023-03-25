@@ -9,7 +9,7 @@
 
          <div class="row mb-3">
             <div class="col-md-3">
-                <a href="" class="btn btn-success">Add New Course</a>
+                <a href="{{route('courses.create')}}" class="btn btn-success">Add New Course</a>
             </div>
          </div>
 
@@ -46,7 +46,7 @@
                                 <td class="d-none d-xl-table-cell">{{$course->fee}}</td>
                                 <td class="d-none d-md-table-cell">
                                     <a href="" class="btn btn-success">View</a>
-                                    <a href="" class="btn btn-success">Edit</a>
+                                    <a href="{{route('courses5.edit',$course->id)}}" class="btn btn-success">Edit</a>
                                     <a href="" class="btn btn-success">Delete</a>
                                 </td>
                             </tr>
