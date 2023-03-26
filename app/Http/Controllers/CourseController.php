@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -14,10 +16,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses=Course::paginate(3);
-        $from=$courses->firstItem();
-        $to=$courses->lastItem();
-        return view('admin.course.index',['courses'=>$courses,'from'=>$from]);
+        $courses = Course::paginate(3);
+        $from = $courses->firstItem();
+        $to = $courses->lastItem();
+        return view('admin.course.index', ['courses' => $courses, 'from' => $from]);
     }
 
     /**
@@ -27,7 +29,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.course.create', ['categories' => $categories]);
     }
 
     /**
@@ -38,7 +41,20 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => "required",
+            'category_id' => "required",
+            'description' => "required",
+            'duration' => "required",
+            'ojt_duration' => "required",
+            'total_topics' => "required",
+            'hours' => "required",
+            'fee' => "required",
+            'discount' => "required",
+            'learning_outcome' => "required",
+        ]);
+        Course::create($request->all());
+        return redirect()->route('courses.index');
     }
 
     /**
@@ -49,7 +65,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $courses = Course::find($id);
+        return view('admin.course.view', ['course' => $courses]);
     }
 
     /**
@@ -58,9 +75,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Course $course)
+    {    
+        $categories = Category::all();
+        return view('admin.course.edit', ['course' => $course, 'categories' => $categories]);
     }
 
     /**
@@ -70,9 +88,22 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $request->validate([
+            'title' => "required",
+            'category_id' => "required",
+            'description' => "required",
+            'duration' => "required",
+            'ojt_duration' => "required",
+            'total_topics' => "required",
+            'hours' => "required",
+            'fee' => "required",
+            'discount' => "required",
+            'learning_outcome' => "required",
+        ]);
+        $course->update($request->all());
+        return redirect()->route('courses.index');
     }
 
     /**

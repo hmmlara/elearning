@@ -143,8 +143,8 @@
                             <a class="position-relative d-block overflow-hidden" href="">
                                 <img class="img-fluid" src="img/cat-1.jpg" alt="">
                                 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Web Design</h5>
-                                    <small class="text-primary">49 Courses</small>
+                                    <h5 class="m-0">{{$categories[0]->name}}</h5>
+                                    <small class="text-primary">{{$courses[0]}}</small>
                                 </div>
                             </a>
                         </div>
@@ -152,8 +152,8 @@
                             <a class="position-relative d-block overflow-hidden" href="">
                                 <img class="img-fluid" src="img/cat-2.jpg" alt="">
                                 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Graphic Design</h5>
-                                    <small class="text-primary">49 Courses</small>
+                                    <h5 class="m-0">{{$categories[1]->name}}</h5>
+                                    <small class="text-primary">{{$courses[1]}}</small>
                                 </div>
                             </a>
                         </div>
@@ -161,8 +161,8 @@
                             <a class="position-relative d-block overflow-hidden" href="">
                                 <img class="img-fluid" src="img/cat-3.jpg" alt="">
                                 <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                                    <h5 class="m-0">Video Editing</h5>
-                                    <small class="text-primary">49 Courses</small>
+                                    <h5 class="m-0">{{$categories[2]->name}}</h5>
+                                    <small class="text-primary">{{$courses[2]}}</small>
                                 </div>
                             </a>
                         </div>
@@ -172,8 +172,8 @@
                     <a class="position-relative d-block h-100 overflow-hidden" href="">
                         <img class="img-fluid position-absolute w-100 h-100" src="img/cat-4.jpg" alt="" style="object-fit: cover;">
                         <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                            <h5 class="m-0">Online Marketing</h5>
-                            <small class="text-primary">49 Courses</small>
+                            <h5 class="m-0">{{$categories[3]->name}}</h5>
+                            <small class="text-primary">{{$courses[3]}}</small>
                         </div>
                     </a>
                 </div>

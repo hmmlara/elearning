@@ -9,7 +9,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="btn btn-success">Add Topic Lesson</a>
+                    <a href="{{ route('topicLesson.create') }}" class="btn btn-success">Add Topic Lesson</a>
                 </div>
             </div>
 
@@ -35,13 +35,13 @@
                                 @foreach ($topicLessons as $topicLesson)
                                     <tr>
                                         <td>{{ $from++ }}</td>
-                                        //topic==model ထဲက function name
+                                        {{-- //topic==model ထဲက function name --}}
                                         <td>{{ $topicLesson->topic->topic_name}}</td>
                                         <td class="d-none d-xl-table-cell">{{ $topicLesson->lesson_name}}</td>
                                         <td class="d-none d-xl-table-cell">{{ $topicLesson->duration }}</td>
                                         <td class="d-none d-md-table-cell">
                                             <a href="" class="btn btn-success">View</a>
-                                            <a href="" class="btn btn-warning">Edit</a>
+                                            <a href="{{ route('topicLesson.edit',$topicLesson->topic_id) }}" class="btn btn-warning">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
@@ -54,7 +54,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    //pagination က $topicLessons ဆိုတာက model တခုလုံးကိုေပျာ
+                    {{-- //pagination က $topicLessons ဆိုတာက model တခုလုံးကိုေပျာ --}}
                     {{ $topicLessons->links('pagination::bootstrap-5') }}
                 </div>
             </div>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Topic;
-use App\Models\Topics_lesson;
+use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class Topic_lesson_Controller extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,23 @@ class Topic_lesson_Controller extends Controller
      */
     public function index()
     {
-        $topicLessons=Topics_lesson::paginate(3);
-        $from=$topicLessons->firstItem();
-        $to=$topicLessons->lastItem();
-        return view('admin.topic_lesson.index',['topicLessons'=>$topicLessons,'from'=>$from]);
+        $categories = Category::all();
+        // dd($categories);
+        $courses = [];
+        $index = 0;
+        foreach ($categories as $category)
+        {
+            foreach ($category->courses as $course) {
+                if ($category->courses() != null) {
+                    $courses[$index] = count($category->courses);
+                } else {
+                    $courses[$index] = 0;
+                }
+                $index++;
+            }
+        }
+        // dd($course);
+        return view('index', ['categories' => $categories, 'courses' => $courses]);
     }
 
     /**
@@ -28,8 +41,7 @@ class Topic_lesson_Controller extends Controller
      */
     public function create()
     {
-        $topics = Topic::all();
-        return view('admin.topic_lesson.create',['topics'=>$topics]);
+        //
     }
 
     /**
@@ -40,13 +52,7 @@ class Topic_lesson_Controller extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'topic_id'=>'required',
-            'lesson_name'=>'required',
-            'duration'=>'required'
-        ]);
-        Topics_lesson::create($request->all());
-        return redirect()->route('topicLesson.index');
+        //
     }
 
     /**
@@ -57,8 +63,7 @@ class Topic_lesson_Controller extends Controller
      */
     public function show($id)
     {
-        $lessons=Topics_lesson::find($id);
-        return view('admin.topic_lesson.view',['topic_lesson'=>$lessons]);
+        //
     }
 
     /**
@@ -67,10 +72,9 @@ class Topic_lesson_Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Topics_lesson $topicLesson)
+    public function edit($id)
     {
-        $topics=Topic::all();
-        return view('admin.topic_lesson.edit',['topicLessons'=>$topicLesson,'topics'=>$topics]);
+        //
     }
 
     /**
@@ -80,15 +84,9 @@ class Topic_lesson_Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topics_lesson $topicLessons)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'topic_id'=>"required",
-            'lesson_name'=>"required",
-            'duration'=>"required"
-        ]);
-        $topicLessons->update($request->all());
-        return redirect()->route('topicLesson.index');
+        //
     }
 
     /**
