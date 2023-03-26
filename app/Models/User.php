@@ -22,9 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    public function registers(){
-        return $this->hasMany(Register::class);
-    }
+   
 
     /**
      * The attributes that should be hidden for serialization.

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Register;
+use App\Models\Category;
+use App\Models\Course;
+
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +16,24 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $registers=Register::paginate(3);
-        $from=$registers->firstItem();
-        $to=$registers->lastItem();
-        
-        return view('admin.register.index',['registers'=>$registers,'from'=>$from]); 
+        $categories=Category::all();
+        // dd($catrgories);
+        $courses=[];
+        $index=0;
+        foreach ($categories as  $category) {
+            if($category->courses!=null){
+                $courses[$index]=count($category->courses);
+                
+            }
+            else{
+                $courses[$index]=0;
+            }
+            $index++;
+           
+            
+        }
+        // dd($courses);
+        return view('index',['categories'=>$categories,'courses'=>$courses]);
     }
 
     /**

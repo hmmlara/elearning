@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+
+Route::resource('/',HomeController::class);
 
 Route::get('about', function () {
     return view('about');
@@ -34,7 +37,7 @@ Route::get('courses', function () {
 Route::group(['prefix'=>'admin'],function(){
     Route::view('home','admin.index')->name('admin.index');
     Route::resource('courses',CourseController::class);
-    Route::resource('registers',RegisterController::class);
+    Route::resource('users',UserController::class);
 
 });
 

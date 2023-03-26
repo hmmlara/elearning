@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('content')
-<main>
+<main class="content">
     <div class="container-fluid p-0">
 
         <h1 class="h3 mb-3"><strong>Analytics</strong>Dashboard</h1>
 
       <div class="row">
         <div class="col-md-3">
-            <a href="#" class="btn btn-success">Add New Course</a>
+            <a href="{{route('courses.create')}}" class="btn btn-success">Add New Course</a>
         </div>
       </div>
 
@@ -39,10 +39,10 @@
                                 <th>{{$course->title}}</th>
                                 <th>{{$course->category->name}}</th>
                                 <th >{{$course->ojt_duration}}</th>
-                                <th class="">{{$course->hours}}</th>
+                                <th class="d-none d-md-table-cell"><span class="badge bg-warning">{{$course->hours}}</span></th>
                                 <th>{{$course->total_topics}}</th>
                                 <th>{{$course->fee}}</th>
-                                <th><a href="" class="btn btn-success me-2">View</a><a href="" class="btn btn-warning me-2">Edit</a><a href="" class="btn btn-danger">Delete</a></th>
+                                <th><a href="" class="btn btn-success me-2">View</a><a href="{{route('courses.edit',$course->id)}}" class="btn btn-warning me-2">Edit</a><a href="" class="btn btn-danger">Delete</a></th>
                             </tr>
                             @endforeach
                         </tbody>

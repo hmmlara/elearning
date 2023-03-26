@@ -27,7 +27,9 @@
 </footer>
 </div>
 </div>
-
+{{-- summernote --}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 
 <script>
@@ -250,6 +252,34 @@ document.getElementById("datetimepicker-dashboard").flatpickr({
     defaultDate: defaultDate
 });
 });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('.summernote').summernote({
+        height:200,
+        toolbar: [
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']]
+  ],
+  
+  
+      });
+      $('.note-editor .note-btn.btn.dropdown-toggle').on('click', function() {
+                $(this).toggleClass('show');
+                $(this).next().toggleClass('show');
+            });
+
+            $('.note-editor .dropdown-item, .note-editor .note-color-btn, .note-editor .note-btn-group.note-align .note-btn.btn')
+                .on('click', function() {
+                    $('.note-editor .show').removeClass('show');
+                });
+     
+    });
 </script>
 
 </body>

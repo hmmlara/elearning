@@ -18,6 +18,7 @@
 
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
 </head>
@@ -54,8 +55,8 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="{{route('registers.index')}}">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Register</span>
+						<a class="sidebar-link" href="{{route('users.index')}}">
+              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">User</span>
             </a>
 					</li>
 
