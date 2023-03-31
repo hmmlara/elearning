@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="<?php echo e(asset('img/favicon.ico')); ?>" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +29,9 @@
 
     <!-- Template Stylesheet -->
     <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
+
+    <!-- summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -51,7 +54,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href=" <?php echo e(route('index')); ?>" class="nav-item nav-link active">Home</a>
+                <a href="<?php echo e(route('index')); ?>" class="nav-item nav-link active">Home</a>
                 <a href="<?php echo e(route('about')); ?>" class="nav-item nav-link">About</a>
                 <a href="<?php echo e(route('courses')); ?>" class="nav-item nav-link">Courses</a>
                 <div class="nav-item dropdown">

@@ -1,6 +1,8 @@
 
 
 <?php $__env->startSection('content'); ?>
+    
+
     <!-- Header Start -->
     <div class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
@@ -218,5 +220,6 @@
     </div>
     <!-- Testimonial End -->
         
-<?php $__env->stopSection(); ?>
+
+    <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\larabatch3\elearning\resources\views/courses.blade.php ENDPATH**/ ?>

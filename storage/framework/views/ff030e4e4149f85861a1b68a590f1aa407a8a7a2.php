@@ -27,8 +27,12 @@
 </footer>
 </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -251,7 +255,46 @@ document.getElementById("datetimepicker-dashboard").flatpickr({
 });
 });
 </script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".summernote").summernote(
+            {
+                height:300,
+                toolbar: [
+            ['style', ['bold', 'italic']], //Specific toolbar display
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['hr']],
+            ['view', ['fullscreen']]
+        ],
+        callbacks: {
+          onBlur: function (e) {
+              var p = e.target.parentNode.parentNode
+              if (!(e.relatedTarget && $.contains(p, e.relatedTarget))) {
+                  $(this).parent().children('.note-editor').children('.note-toolbar').css("display", "none");;
+                console.log("onBlur");
+              }
+          },
+        onFocus: function (e) {
+          $(this).parent().children('.note-editor').children('.note-toolbar').css("display", "block");
+        }
+      }
 
+            }
+        );
+
+        $('.note-editor .note-btn.btn.dropdown-toggle').on('click', function() {
+                $(this).toggleClass('show');
+                $(this).next().toggleClass('show');
+            });
+
+            $('.note-editor .dropdown-item, .note-editor .note-color-btn, .note-editor .note-btn-group.note-align .note-btn.btn')
+                .on('click', function() {
+                    $('.note-editor .show').removeClass('show');
+                });
+    })
+</script>
 </body>
 
 </html><?php /**PATH D:\larabatch3\elearning\resources\views/partials/footer.blade.php ENDPATH**/ ?>

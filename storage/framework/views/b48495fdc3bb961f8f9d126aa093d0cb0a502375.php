@@ -15,10 +15,13 @@
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
-
-	<link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 	<link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
+	<link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+	
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+	<!-- summernote -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,16 +39,19 @@
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="<?php echo e(route('admin.index')); ?>">
-						<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-						</a>
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
 					</li>
-					
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="<?php echo e(route('courses.index')); ?>">
-						<i class="align-middle" data-feather="book"></i> <span class="align-middle">Course</span>
-						</a>
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Course</span>
+            </a>
 					</li>
-
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="<?php echo e(route('categories.index')); ?>">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Category</span>
+            </a>
+					</li>
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.html">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
@@ -64,6 +70,7 @@
             </a>
 					</li>
 
+					
 
 					<li class="sidebar-header">
 						Tools & Components
