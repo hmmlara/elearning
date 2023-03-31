@@ -20,7 +20,6 @@
                             <div class="card-body">
                                 <form action="{{ route('topicLesson.store') }}" method="post">
                                     @csrf
-
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div>

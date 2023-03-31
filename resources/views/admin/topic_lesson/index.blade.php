@@ -33,18 +33,24 @@
                             </thead>
                             <tbody>
                                 @foreach ($topicLessons as $topicLesson)
-                                    <tr>
-                                        <td>{{ $from++ }}</td>
-                                        {{-- //topic==model ထဲက function name --}}
-                                        <td>{{ $topicLesson->topic->topic_name}}</td>
-                                        <td class="d-none d-xl-table-cell">{{ $topicLesson->lesson_name}}</td>
-                                        <td class="d-none d-xl-table-cell">{{ $topicLesson->duration }}</td>
-                                        <td class="d-none d-md-table-cell">
-                                            <a href="" class="btn btn-success">View</a>
-                                            <a href="{{ route('topicLesson.edit',$topicLesson->topic_id) }}" class="btn btn-warning">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <form action="{{ route('topicLesson.destroy', $topicLesson->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <tr>
+                                            <td>{{ $from++ }}</td>
+                                            {{-- //topic==model ထဲက function name --}}
+                                            <td>{{ $topicLesson->topic->topic_name }}</td>
+                                            <td class="d-none d-xl-table-cell">{{ $topicLesson->lesson_name }}</td>
+                                            <td class="d-none d-xl-table-cell">{{ $topicLesson->duration }}</td>
+                                            <td class="d-none d-md-table-cell">
+                                                <a href="{{ route('topicLesson.show', $topicLesson->id) }}" class="btn btn-success">View</a>
+                                                <a href="{{ route('topicLesson.edit', $topicLesson->id) }}"
+                                                    class="btn btn-warning">Edit</a>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                {{-- <a href="{{ route('topicLesson.destroy',$topicLesson->id) }}" class="btn btn-danger">Delete</a> --}}
+                                            </td>
+                                        </tr>
+                                    </form>
                                 @endforeach
 
                             </tbody>

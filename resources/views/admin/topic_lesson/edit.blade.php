@@ -15,10 +15,10 @@
                         <div class="card flex-fill">
                             <div class="card-header">
 
-                                <h5 class="card-title mb-0">Lessons</h5>
+                                {{-- <h5 class="card-title mb-0">Lessons</h5> --}}
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('topicLesson.update', $topicLessons->id) }}" method="post">
+                                <form action="{{ route('topicLesson.update',$topicLesson->id) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <div class="row">
@@ -28,7 +28,7 @@
                                                 <select name="topic_id" id="" class="form-select">
                                                     <option value="">Choose Topic</option>
                                                     @foreach ($topics as $topic)
-                                                        @if ($topic->id == $topicLessons->topic_id)
+                                                        @if ($topic->id == $topicLesson->topic_id)
                                                             <option value="{{ $topic->id }}" selected>
                                                                 {{ $topic->topic_name }}</option>
                                                         @endif
@@ -43,7 +43,7 @@
                                             <div>
                                                 <label for="" class="form-label">Lesson Name</label>
                                                 <input type="text" name="lesson_name" id="" class="form-control"
-                                                    value="{{ $topicLessons->lesson_name }}">
+                                                    value="{{ $topicLesson->lesson_name }}">
                                                 @error('lesson_name')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -54,7 +54,7 @@
                                             <div>
                                                 <label for="" class="form-label">Duration</label>
                                                 <input type="text" name="duration" id="" class="form-control"
-                                                    value="{{ $topicLessons->duration }}">
+                                                    value="{{ $topicLesson->duration }}">
                                                 @error('duration')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

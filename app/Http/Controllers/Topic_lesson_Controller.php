@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Topic;
 use App\Models\Topics_lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Topic_lesson_Controller extends Controller
 {
@@ -57,8 +58,9 @@ class Topic_lesson_Controller extends Controller
      */
     public function show($id)
     {
-        $lessons=Topics_lesson::find($id);
-        return view('admin.topic_lesson.view',['topic_lesson'=>$lessons]);
+        $topicLesson=Topics_lesson::find($id);
+        $topics = Topic::all();
+        return view('admin.topic_lesson.view',['topiclesson'=>$topicLesson,'topic'=>$topics]);
     }
 
     /**
@@ -70,7 +72,7 @@ class Topic_lesson_Controller extends Controller
     public function edit(Topics_lesson $topicLesson)
     {
         $topics=Topic::all();
-        return view('admin.topic_lesson.edit',['topicLessons'=>$topicLesson,'topics'=>$topics]);
+        return view('admin.topic_lesson.edit',['topicLesson'=>$topicLesson,'topics'=>$topics]);
     }
 
     /**
@@ -80,14 +82,14 @@ class Topic_lesson_Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topics_lesson $topicLessons)
+    public function update(Request $request, Topics_lesson $topicLesson)
     {
         $request->validate([
             'topic_id'=>"required",
             'lesson_name'=>"required",
             'duration'=>"required"
         ]);
-        $topicLessons->update($request->all());
+        $topicLesson->update($request->all());
         return redirect()->route('topicLesson.index');
     }
 
@@ -99,6 +101,7 @@ class Topic_lesson_Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('topics_lessons')->where('id',$id)->delete();
+        return redirect()->route('topicLesson.index');
     }
 }
