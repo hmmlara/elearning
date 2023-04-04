@@ -22,8 +22,9 @@ return new class extends Migration
             $table->unsignedInteger('total_topics');
             $table->unsignedInteger('fee');
             $table->unsignedInteger('discount');
+            $table->string('feature_image');
             $table->string('ojt_duration');
-            $table->string('learing_outcome');
+            $table->string('learning_outcome');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')->on('categories')

@@ -9,7 +9,7 @@
 
         <div class="row mb-3">
             <div class="col-md-3">
-                <a href="#" class="btn btn-success">Add New Course</a>
+                <a href="{{route('courses.create')}}" class="btn btn-success">Add New Course</a>
             </div>
         </div>
 
@@ -28,19 +28,20 @@
                                 <th class="d-none d-xl-table-cell">Category</th>
                                 <th class="d-none d-xl-table-cell">Duration</th>
                                 <th>Hours</th>
+                                <th>Image</th>
                                 <th class="d-none d-md-table-cell">Lessons</th>
                                 <th class="d-none d-md-table-cell">Fee</th>
                                 <th class="d-none d-md-table-cell">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
+                            <!-- {{-- <tr>
                                 <td>Project Apollo</td>
                                 <td class="d-none d-xl-table-cell">01/01/2021</td>
                                 <td class="d-none d-xl-table-cell">31/06/2021</td>
                                 <td><span class="badge bg-success">Done</span></td>
                                 <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                            </tr> --}}
+                            </tr> --}} -->
                             @foreach ($courses as $course)
                                 <tr>
                                     <td>{{$from++}}</td>
@@ -48,6 +49,7 @@
                                     <td>{{$course->category->name}}</td>
                                     <td>{{$course->duration}}</td>
                                     <td>{{$course->hours}}</td>
+                                    <td><img src="/img/{{$course->feature_image}}" alt="" class="w-100" height="100px"></td>
                                     <td>{{$course->total_topics}}</td>
                                     <td>{{$course->fee}}</td>
                                     <th class="d-none d-md-table-cell"><a href="" class="btn btn-success">View</a><a href="" class="btn btn-warning">Edit</a><a href="" class="btn btn-danger">Delete</a></th>

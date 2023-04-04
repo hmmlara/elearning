@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,24 @@ Route::get('/about',function(){
 Route::get('/courses',function(){
     return view('courses');
 })->name('courses');
+// Route::get('/login',function(){
+//     return view('login');
+// })->name('login');
+// Route::get('/register',function(){
+//     return view('register');
+// })->name('register');
+Route::group(['namespace' => 'App\Http\Controllers'],function(){
+    Route::group(['middleware' => ['guest']], function(){
+        //register route
+        Route::get('/register','RegisterController@show')->name('register');
+        Route::post('/register','RegisterController@register')->name('register.registeration');
+        Route::get('/login','LoginController@show')->name('login');
+        Route::post('/login','LoginController@login')->name('login.User');
+    });
+    Route::group(['middleware' => ['auth']], function(){
+        Route::get('/logout','LogoutController@logout')->name('logout');
+    });
+});
 Route::group(['prefix'=>'admin'],function(){
     Route::view('home','admin.index')->name('admin.index');
     Route::resource('courses',CourseController::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -15,6 +16,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses=Course::paginate(3);
+        // dd($courses);
         $from=$courses->firstItem();
         // $to=$courses->lastItem();
         // echo $from . ','.$to;
@@ -29,7 +31,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Category::all();
+        return view('admin.course.create',['categories'=>$categories]);
     }
 
     /**
@@ -40,7 +43,48 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'category_id'=>'required',
+                'duration'=>'required',
+                'ojt_duration'=>'required',
+                'total_topics'=>'required',
+                'hours'=>'required',
+                'fee'=>'required',
+                'discount'=>'required',
+                'learning_outcome'=>'required',
+                'feature_image'=>'required|mimes:jpg,jpeg,png|max:200000'
+
+            ]
+            );
+            dd($request);
+            // dd($request->file('feature_image'));
+        $file=$request->file('feature_image');
+        $name=$request->file('feature_image')->getClientOriginalName();
+        $new_name=time().$name;
+        $destinationPath=public_path().'/img';
+        $file->move($destinationPath,$new_name);
+
+        // date_default_timezone_set("Asia/Yangon");
+        // $date_now=date('Y-m-d H:i:s');
+        // $request->feature_image=$name;
+        // Course::create($request->all());
+        Course::create([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'category_id'=>$request->category_id,
+                'duration'=>$request->duration,
+                'ojt_duration'=>$request->ojt_duration,
+                'total_topics'=>$request->total_topics,
+                'hours'=>$request->hours,
+                'fee'=>$request->fee,
+                'discount'=>$request->discount,
+                'learning_outcome'=>$request->learning_outcome,
+                'feature_image'=>$new_name
+        ]);
+        return redirect()->route('courses.index');
     }
 
     /**
