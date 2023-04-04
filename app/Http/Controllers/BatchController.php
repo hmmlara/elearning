@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batch;
+use App\Models\Course;
+use App\Models\Trainer;
+use App\Models\Course_trainer;
+
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -16,9 +20,7 @@ class BatchController extends Controller
     {
         //
         $batches = Batch::paginate(2);
-        $from = $batches->firstItem();
-        $to = $batches->lastItem();
-        return view('admin.batch.index', ['batches' => $batches, 'from' => $from]);
+        return view('admin.batch.index', ['batches' => $batches]); 
     }
 
     /**
@@ -29,6 +31,10 @@ class BatchController extends Controller
     public function create()
     {
         //
+        $courses = Course::all();
+        $trainers = Trainer::all();
+
+        return view('admin.batch.create', ['courses' => $courses, 'trainers' => $trainers]);
     }
 
     /**
@@ -40,6 +46,30 @@ class BatchController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'batch_name' => 'required',
+            'course_id' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'trainer_id' => 'required'
+        ]);
+        //dd($request->all()); 
+        
+        Batch::create([
+            'batch_name' => $request->batch_name,
+            'course_id' => $request->course_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+        $batch_id = Batch::where('batch_name', $request->batch_name)->get('id');
+        Course_trainer::create([
+            'trainer_id' => $request->trainer_id,
+            'batch_id' => $batch_id[0]['id']
+        ]);
+        // dd($batch_id);
+        
+        return redirect()->route('batch.index');
+
     }
 
     /**
@@ -51,6 +81,8 @@ class BatchController extends Controller
     public function show($id)
     {
         //
+        $batch = Batch::find($id);
+        return view('admin.batch.view', ['batch'=> $batch]);
     }
 
     /**
@@ -62,6 +94,9 @@ class BatchController extends Controller
     public function edit($id)
     {
         //
+        $batch = Batch::find($id);
+        $courses = Course::all();
+        return view('admin.batch.edit', ['batch' => $batch, 'courses' => $courses]);
     }
 
     /**
@@ -71,9 +106,17 @@ class BatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Batch $batch)
     {
         //
+        $request->validate([
+            'batch_name' => 'required',
+            'course_id' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+        $batch->update($request->all());
+        return redirect()->route('batch.index');
     }
 
     /**
@@ -85,5 +128,8 @@ class BatchController extends Controller
     public function destroy($id)
     {
         //
+        $batch = Batch::find($id);
+        $batch->delete();
+        return redirect()->route('batch.index');
     }
 }

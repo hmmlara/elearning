@@ -19,10 +19,6 @@ class CreateCourseTrainersTable extends Migration
             $table->foreign('trainer_id')
                 ->references('id')->on('trainers')
                 ->onDelete('cascade');
-            $table->unsignedBigInteger('course_id');
-            $table->foreign('course_id')
-                ->references('id')->on('courses')
-                ->onDelete('cascade');
             $table->unsignedBigInteger('batch_id');
             $table->foreign('batch_id')
                 ->references('id')->on('batches')

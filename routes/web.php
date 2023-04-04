@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\CourseInfoController;
+use App\Http\Controllers\homeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,21 +17,26 @@ use App\Http\Controllers\BatchController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
 
-Route::get('about', function(){
+Route::resource('/', HomeController::class);
+
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::get('/courseinfo', 'CourseInfoController@show')->name('courseinfo');
+});
+
+Route::get('about', function () {
     return view('about');
 })->name('about');
 
-Route::get('courses', function(){
-    return view('courses');
-})->name('courses');
+// Route::get('courses', function () {
+//     return view('courses');
+// })->name('courses');
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin'], function () {
     Route::view('/', 'admin.index')->name('admin.index');
     Route::resource('courses', CourseController::class);
     Route::resource('batch', BatchController::class);
-
 });
