@@ -9,7 +9,7 @@
 
 		<div class="row">
             <div class="col-md-3 mb-3">
-                <a href="" class="btn btn-primary">Add New Speciality</a>
+                <a href="{{route('specialities.create')}}" class="btn btn-primary">Add New Speciality</a>
             </div>
         </div>
 
@@ -32,17 +32,21 @@
 
 						<tbody>
                             @foreach ($specialities as $speciality)
-                            <tr>
-                                <th>{{$from ++}}</th>
-								<td>{{$speciality->id}}</td>
-								<td>{{$speciality->name}}</td>
-								<td>{{$speciality->parent}}</td>
-								<td class="d-none d-md-table-cell">
-                                    <a href="" class="btn btn-primary">View</a>
-                                    <a href="" class="btn btn-warning">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
-                                </td>
-							</tr>
+							<form action="{{route('specialities.destroy',$speciality->id)}}" method="post">
+                                @csrf
+                                @method('delete')
+									<tr>
+										<th>{{$from ++}}</th>
+										<td>{{$speciality->id}}</td>
+										<td>{{$speciality->name}}</td>
+										<td>{{$speciality->parent}}</td>
+										<td class="d-none d-md-table-cell">
+											<a href="{{route('specialities.show',$speciality->id)}}" class="btn btn-primary">View</a>
+											<a href="{{route('specialities.edit',$speciality->id)}}" class="btn btn-warning">Edit</a>
+											<button class="btn btn-outline-danger">Delete</button>
+										</td>
+									</tr>
+							</form>
                             @endforeach							
 						</tbody>
 

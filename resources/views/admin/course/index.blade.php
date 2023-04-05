@@ -9,7 +9,7 @@
 
 		<div class="row">
             <div class="col-md-3 mb-3">
-                <a href="" class="btn btn-primary">Add New Course</a>
+                <a href="{{route('courses.create')}}" class="btn btn-primary">Add New Course</a>
             </div>
         </div>
 
@@ -25,6 +25,7 @@
 							<tr>
                                 <th>No</th>
 								<th>Name</th>
+								<th>Photo</th>
 								<th class="d-none d-xl-table-cell">Category</th>
 								<th class="d-none d-xl-table-cell">Duration</th>
 								<th>Hours</th>
@@ -36,20 +37,27 @@
 
 						<tbody>
                             @foreach ($courses as $course)
-                            <tr>
-                                <th>{{$from ++}}</th>
-								<td>{{$course->title}}</td>
-								<td class="d-none d-xl-table-cell">{{$course->category->name}}</td>
-								<td class="d-none d-xl-table-cell">{{$course->duration}}</td>
-								<td><span class="badge bg-success">{{$course->hours}}</span></td>
-								<td><span class="badge bg-success">{{$course->total_topics}}</span></td>
-								<td class="d-none d-md-table-cell">{{$course->fee}}</td>
-								<td class="d-none d-md-table-cell">
-                                    <a href="" class="btn btn-primary">View</a>
-                                    <a href="" class="btn btn-warning">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
-                                </td>
-							</tr>
+							<form action="{{route('courses.destroy',$course->id)}}" method="post">
+                                @csrf
+                                @method('delete')
+                            
+								<tr>
+									<th>{{$from ++}}</th>
+									<td>{{$course->title}}</td>
+									<td><img src="{{asset('../../img/'.$course->feature_image)}}" alt="hi" height="150px" width="150px"></td>
+									<td class="d-none d-xl-table-cell">{{$course->category->name}}</td>
+									<td class="d-none d-xl-table-cell">{{$course->duration}}</td>
+									<td><span class="badge bg-success">{{$course->hours}}</span></td>
+									<td><span class="badge bg-success">{{$course->total_topics}}</span></td>
+									<td class="d-none d-md-table-cell">{{$course->fee}}</td>
+									<td class="d-none d-md-table-cell">
+										<a href="{{route('courses.show',$course->id)}}" class="btn btn-primary">View</a>
+										<a href="{{route('courses.edit',$course->id)}}" class="btn btn-warning">Edit</a>
+										<button class="btn btn-outline-danger">Delete</button>
+										
+									</td>
+								</tr>
+							</form>
                             @endforeach							
 						</tbody>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,8 @@ class CourseController extends Controller
     public function create()
     {
         //
+        $categories=Category::all();
+        return view('admin.course.create',['categories'=>$categories]);
     }
 
     /**
@@ -41,6 +44,44 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'category_id'=>'required',
+                'duration'=>'required',
+                'ojt_duration'=>'required',
+                'total_topics'=>'required',
+                'hours'=>'required',
+                'fee'=>'required',
+                'discount'=>'required',
+                'learning_outcome'=>'required',
+                'feature_image'=>'required|mimes:jpg,jpeg,png|max:200000'
+
+            ]
+            );
+            // dd($request->file('feature_image'));
+
+        $data = $request->all();
+        
+        $file=$request->file('feature_image');
+        $name=$request->file('feature_image')->getClientOriginalName();
+        $new_name=time().$name;
+        $destinationPath=public_path().'/img';
+
+        $data['feature_image'] = $new_name;  
+
+        // date_default_timezone_set("Asia/Yangon");
+        // $date_now=date('Y-m-d H:i:s');
+        // $request->feature_image=$name;
+        // Course::create($request->all());
+
+        if( $file->move($destinationPath,$new_name)){
+            Course::create($data);
+            return redirect()->route('courses.index');
+        }
+        
+        return back();
     }
 
     /**
@@ -52,6 +93,8 @@ class CourseController extends Controller
     public function show($id)
     {
         //
+        $course=Course::find($id);
+        return view('admin.course.view',['course'=>$course]);
     }
 
     /**
@@ -63,6 +106,9 @@ class CourseController extends Controller
     public function edit($id)
     {
         //
+        $course=Course::find($id);
+        $categories=Category::all();
+        return view('admin.course.edit',['course'=>$course,'categories'=>$categories]);
     }
 
     /**
@@ -72,9 +118,46 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Course $course)
     {
-        //
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'category_id'=>'required',
+                'duration'=>'required',
+                'ojt_duration'=>'required',
+                'total_topics'=>'required',
+                'hours'=>'required',
+                'fee'=>'required',
+                'discount'=>'required',
+                'learning_outcome'=>'required',
+                'feature_image'=>'nullable|mimes:jpg,jpeg,png,webp|max:200000'
+            ]
+        );
+
+        $data = $request->all();
+        
+        if($request->hasFile('feature_image')){
+            $file=$request->file('feature_image');
+            $name=$request->file('feature_image')->getClientOriginalName();
+            $new_name=time().$name;
+            $destinationPath=public_path().'/img';
+
+            $data['feature_image'] = $new_name;  
+
+            if( $file->move($destinationPath,$new_name)){
+                if($course->update($data))
+                {
+                    return redirect()->route('courses.index');
+                }
+            }        
+        }
+
+        if($course->update($data))
+            return redirect()->route('courses.index');
+
+        // return redirect()->route('courses.index');
     }
 
     /**
@@ -86,5 +169,9 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+        $course=Course::find($id);
+        $course->delete();
+        return redirect()->route('courses.index');
+
     }
 }
