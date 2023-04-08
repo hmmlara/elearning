@@ -13,19 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
 
-Route::get('/courses', function () {
-    return view('courses');
-})->name('courses');
+// Route::get('/courses', function () {
+//     return view('courses');
+// })->name('courses');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('about');
 
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
+
+    Route::resource('/',HomeController::class);
+
+    Route::get('/courseinfo', 'CourseInfoController@show')->name('courseinfo');
 
     // admin
     Route::group(['prefix' => 'admin'], function () {
