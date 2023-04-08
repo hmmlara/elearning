@@ -20,7 +20,7 @@ class BatchController extends Controller
     {
         //
         $batches = Batch::paginate(2);
-        return view('admin.batch.index', ['batches' => $batches]); 
+        return view('admin.batch.index', ['batches' => $batches]);
     }
 
     /**
@@ -53,8 +53,8 @@ class BatchController extends Controller
             'end_date' => 'required',
             'trainer_id' => 'required'
         ]);
-        //dd($request->all()); 
-        
+        // dd($request->all());
+
         Batch::create([
             'batch_name' => $request->batch_name,
             'course_id' => $request->course_id,
@@ -64,10 +64,11 @@ class BatchController extends Controller
         $batch_id = Batch::where('batch_name', $request->batch_name)->get('id');
         Course_trainer::create([
             'trainer_id' => $request->trainer_id,
+            'course_id' => $request->course_id,
             'batch_id' => $batch_id[0]['id']
         ]);
         // dd($batch_id);
-        
+
         return redirect()->route('batch.index');
 
     }

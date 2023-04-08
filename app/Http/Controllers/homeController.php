@@ -19,7 +19,7 @@ class homeController extends Controller
         //
         $categories = Category::all();
 
-        //dd($categories);
+        dd($categories);
         $courses = [];
         $index = 0;
         foreach($categories as $category){
@@ -42,7 +42,7 @@ class homeController extends Controller
         //     $trainer_name=DB::table('trainers')->where('id',$tid[0]->trainer_id)->get('name');
         //     // dd($trainer_name);
 
-      
+
 
         $select = DB::table('courses')
             ->join('batches', 'courses.id' , '=', 'batches.course_id')
@@ -53,12 +53,12 @@ class homeController extends Controller
             ->take(3)
             ->get();
         //dd($all);
-        
-        
-        
+
+
+        // dd($categories);
 
         //$all_course = Course::all();
-        return view('index', ['categories'=>$categories, 'courses'=>$courses,'selection' => $select ]);
+        // return view('index', ['categories'=>$categories, 'courses'=>$courses,'selection' => $select ]);
     }
 
     /**

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ScheduleRequest;
-use App\Models\Course;
+use App\Models\Batch;
 use App\Models\Schedule;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -30,9 +30,9 @@ class ScheduleController extends Controller
     public function create()
     {
         //
-        $courses = Course::all();
+        $batches = Batch::all();
         return view('admin.schedule.create')
-            ->with(["courses" => $courses]);
+            ->with(["batches" => $batches]);
     }
 
     /**
@@ -69,10 +69,10 @@ class ScheduleController extends Controller
     public function edit(Schedule $schedule)
     {
         //
-        $courses = Course::all();
+        $batches = Batch::all();
         // dd($schedule);
         return view('admin.schedule.edit')
-                ->with(["schedule" => $schedule,"courses" => $courses]);
+                ->with(["schedule" => $schedule,"batches" => $batches]);
     }
 
     /**
