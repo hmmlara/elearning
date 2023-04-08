@@ -10,7 +10,7 @@ class Batch extends Model
     use HasFactory;
     protected $fillable = ['batch_name', 'course_id', 'start_date', 'end_date'];
     public function course(){
-        return $this->belongsTo(course::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function trainers(){

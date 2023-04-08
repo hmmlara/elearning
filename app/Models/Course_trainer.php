@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Course_trainer extends Model
 {
     use HasFactory;
-    protected $fillable = ['batch_id', 'trainer_id'];
+    protected $fillable = ['batch_id','course_id', 'trainer_id'];
 
 }
