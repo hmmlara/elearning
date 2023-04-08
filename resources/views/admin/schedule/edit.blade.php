@@ -21,9 +21,9 @@
                         <select name="course_id" id=""
                             class="form-control @if ($errors->has('course_id')) border border-danger @endif">
                             <option value="" hidden selected>Choose Course</option>
-                            @foreach ($courses as $course)
-                                <option value="{{ $course->id }}" @if ($course->id == $schedule->course_id) selected @endif>
-                                    {{ $course->title }}</option>
+                            @foreach ($batches as $batch)
+                                <option value="{{ $batch->id }}" @if ($batch->id == $schedule->batch_id) selected @endif>
+                                    {{ $batch->course->title }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('course_id'))

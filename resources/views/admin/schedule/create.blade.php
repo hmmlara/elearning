@@ -20,8 +20,8 @@
                         <select name="course_id" id=""
                             class="form-control @if ($errors->has('course_id')) border border-danger @endif">
                             <option value="" hidden selected>Choose Course</option>
-                            @foreach ($courses as $course)
-                                <option value="{{ $course->id }}">{{ $course->title }}</option>
+                            @foreach ($batches as $batch)
+                                <option value="{{ $batch->id }}">{{ $batch->course->title }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('course_id'))
