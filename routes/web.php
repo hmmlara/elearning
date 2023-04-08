@@ -38,5 +38,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // schedules
         Route::resource('/schedules', ScheduleController::class);
+
+        // batches
+        Route::resource('/batch', BatchController::class);
     });
 });

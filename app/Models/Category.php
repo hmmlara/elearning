@@ -13,3 +13,11 @@ class Category extends Model
         return $this->hasMany(Course::class);
     }
 }
+
+class Category extends Model
+{
+    use HasFactory;
+    public function courses(){
+        return $this->hasMany(course::class);
+    }
+}

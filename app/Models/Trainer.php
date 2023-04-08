@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Trainer extends Model
 {
     use HasFactory;
+
+    public function batches(){
+        return $this->belongsToMany(Batch::class, 'course_trainers');
+    }
 }

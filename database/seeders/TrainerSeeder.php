@@ -39,3 +39,31 @@ class TrainerSeeder extends Seeder
         }
     }
 }
+
+class TrainerSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Trainer::create([
+            'name' => 'Mr. Leo Backham',
+            'email' => 'leo@gmail.com',
+            'phone' =>  '09374927493',
+            'education' =>  'Master of IT',
+            'experience' => 'more than 5 years',
+            'description' => 'knowledge in Java and C#'
+        ]);
+        Trainer::create([
+            'name' => 'Dr. William',
+            'email' => 'william@gmail.com',
+            'phone' =>  '09374982739',
+            'education' =>  'Master of Computing',
+            'experience' => 'more than 5 years',
+            'description' => 'knowledge in Cloud Computing'
+        ]);
+    }
+}
