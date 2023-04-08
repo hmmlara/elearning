@@ -25,6 +25,7 @@ class CreateCoursesTable extends Migration
             $table->integer('discount');
             $table->integer('ojt_duration');
             $table->longText('learning_outcome');
+            $table->longText('feature_img');
             $table->foreign('category_id')
                 ->on('categories')
                 ->references('id')
