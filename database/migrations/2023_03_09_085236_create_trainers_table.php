@@ -21,6 +21,7 @@ class CreateTrainersTable extends Migration
             $table->string('education');
             $table->string('experience');
             $table->string('description')->nullable();
+            $table->string('trainer_photo')->nullable();
             $table->timestamps();
         });
     }
