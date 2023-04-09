@@ -50,6 +50,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::resource('/specialities',SpecialityController::class);
 
         // trainers
-        Route::resource('trainers',TrainerController::class);
+        Route::resource('/trainers',TrainerController::class);
     });
 });
