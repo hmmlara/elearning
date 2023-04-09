@@ -45,5 +45,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // batches
         Route::resource('/batch', BatchController::class);
+
+        // specialities
+        Route::resource('/specialities',SpecialityController::class);
     });
 });

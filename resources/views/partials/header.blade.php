@@ -40,10 +40,9 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="{{ route('home')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="{{ route ('index')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>eLEARNING</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -51,9 +50,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
-                {{-- <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
-                <a href="{{ route('courses') }}" class="nav-item nav-link">Courses</a> --}}
+                <a href="{{ route ('index')}}" class="nav-item nav-link {{ (request()->segment(1) == '') ? 'active' : '' }}">Home</a>
+                <a href="{{ route ('about')}}" class="nav-item nav-link {{ (request()->segment(1) == 'about') ? 'active' : '' }}">About</a>
+                {{-- <a href="{{ route ('courses')}}" class="nav-item nav-link {{ (request()->segment(1) == 'courses') ? 'active' : '' }}">Courses</a> --}}
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-down m-0">
