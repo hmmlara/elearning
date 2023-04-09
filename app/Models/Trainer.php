@@ -9,6 +9,17 @@ class Trainer extends Model
 {
     use HasFactory;
 
+    protected $table='trainers';
+    protected $fillable =[
+        'name',
+        'email',
+        'phone',
+        'education',
+        'experience',
+        'description',
+        'trainer_photo'
+    ];
+
     public function batches(){
         return $this->belongsToMany(Batch::class, 'course_trainers');
     }
