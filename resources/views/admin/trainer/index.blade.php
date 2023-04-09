@@ -9,11 +9,11 @@
 
          <div class="row mb-3">
             <div class="col-md-3">
-                <a href="" class="btn btn-success">Add New Trainers</a>
+                <a href="{{ route('trainers.create') }}" class="btn btn-success">Add New Trainers</a>
             </div>
          </div>
 
-		<div class="row">
+         <div class="row">
 			<div class="col-12 col-lg-12 col-xxl-12 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header">
@@ -27,29 +27,31 @@
 								<th>Name</th>
 								<th class="d-none d-xl-table-cell">Email</th>
 								<th class="d-none d-xl-table-cell">Phone</th>
-								<th>Education</th>
-								<th class="d-none d-md-table-cell">Experience</th>
-								<th class="d-none d-md-table-cell">Description</th>
+                                <th class="d-none d-xl-table-cell">Image</th>
 								<th class="d-none d-md-table-cell">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 
                         @foreach ($trainers as $key => $trainer)
-                            <tr>
-                                <td>{{$trainers->firstItem() + $key}}</td>
-                                <td class="d-none d-xl-table-cell">{{$trainer->name}}</td>
-                                <td class="d-none d-xl-table-cell">{{$trainer->email}}</td>
-                                <td class="d-none d-xl-table-cell">{{$trainer->phone}}</td>
-                                <td class="d-none d-xl-table-cell">{{$trainer->education}}</td>
-                                <td class="d-none d-xl-table-cell">{{$trainer->experience}}</td>
-                                <td class="d-none d-xl-table-cell">{{$trainer->description}}</td>
-                                <td class="d-none d-md-table-cell">
-                                    <a href="" class="btn btn-success">View</a>
-                                    <a href="" class="btn btn-success">Edit</a>
-                                    <a href="" class="btn btn-success">Delete</a>
-                                </td>
-                            </tr>
+                            <form action="{{route('trainers.destroy',$trainer->id)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <tr>
+                                    <td>{{ $trainers->firstItem() + $key }}</td>
+                                    <td class="d-none d-xl-table-cell">{{$trainer->name}}</td>
+                                    <td class="d-none d-xl-table-cell">{{$trainer->email}}</td>
+                                    <td class="d-none d-xl-table-cell">{{$trainer->phone}}</td>
+                                    <td class="d-none d-xl-table-cell">
+                                    <img src="/img/{{$trainer->trainer_photo}}" class="w-50" height="100px"  alt="">
+                                    </td>
+                                    <td class="d-none d-md-table-cell">
+                                        <a href="{{ route('trainers.show',$trainer->id) }}" class="btn btn-success">View</a>
+                                        <a href="{{ route('trainers.edit',$trainer->id)}}" class="btn btn-success">Edit</a>
+                                        <button class="btn btn-success">Delete</button>
+                                    </td>
+                                </tr>
+                            </form>
                         @endforeach
 
 
