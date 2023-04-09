@@ -277,5 +277,3 @@
 </main>
 
 @endsection
-
-@endsection
