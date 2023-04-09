@@ -48,5 +48,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
         // specialities
         Route::resource('/specialities',SpecialityController::class);
+
+        // trainers
+        Route::resource('trainers',TrainerController::class);
     });
 });
