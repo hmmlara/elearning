@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('courses');
 // })->name('courses');
 
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
