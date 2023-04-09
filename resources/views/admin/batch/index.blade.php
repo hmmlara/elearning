@@ -27,7 +27,7 @@
                                 <th>Batch Name</th>
                                 <th class="d-none d-xl-table-cell">Course</th>
                                 <th class="d-none d-xl-table-cell">Trainer</th>
-                                
+
                                 <th class="d-none d-xl-table-cell">Start Date</th>
                                 <th class="d-none d-xl-table-cell">End Date</th>
                                 <th class="d-none d-xl-table-cell">Action</th>
@@ -47,46 +47,36 @@
                                     <td>
                                     @foreach($batch->trainers as $trainer)
                                         <span>{{$trainer->name}}</span>
-                                    @endforeach  
-                                </td>  
+                                    @endforeach
+                                </td>
                                 {{-- <t
                                     @php
-                                      $course_id=$batch->course->id; 
+                                      $course_id=$batch->course->id;
                                       $course=Course::find($course_id);
-                                      echo $course->trainer->name; 
+                                      echo $course->trainer->name;
                                     @endphp
                                 </td> --}}
 
                                 <td class="d-none d-xl-table-cell">{{$batch->start_date}}</td>
-                            
+
                                 <td class="d-none d-md-table-cell">{{$batch->end_date}}</td>
                                 <td class="d-none d-md-table-cell">
                                     <a href="{{route('batch.show', $batch->id)}}" class="btn btn-success">View</a>
                                     <a href="{{route('batch.edit', $batch->id)}}" class="btn btn-warning">Edit</a>
                                     <button class="btn btn-danger">Delete</button>
                                 </td>
-                                
+
                                 </tr>
                             </form>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
             </div>
-            
-        </div>
 
-        <div class="d-flex justify-content-around">
-            <div>
-                Showing {{ $batches->firstItem() }} to {{ $batches->lastItem() }}
-                of total {{ $batches->total() }}
-            </div>
-            <div class="pagination">
+        </div>
                 {{$batches->links('pagination::bootstrap-4')}}
-            </div>
-        </div>
-
     </div>
 </main>
 
