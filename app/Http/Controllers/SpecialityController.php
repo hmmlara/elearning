@@ -16,10 +16,8 @@ class SpecialityController extends Controller
     {
         //
         $specialities=Speciality::paginate(2);
-        $from=$specialities->firstItem();
-        $to=$specialities->lastItem();
-        
-        return view('admin.speciality.index',['specialities' => $specialities,'from'=>$from]);
+
+        return view('admin.speciality.index',['specialities' => $specialities]);
     }
 
     /**
