@@ -24,20 +24,19 @@
 						<thead>
 							<tr>
                                 <th>No</th>
-								<th>ID</th>
 								<th>Name</th>
                                 <th>Parent</th>
+                                <th>Action</th>
 							</tr>
 						</thead>
 
 						<tbody>
-                            @foreach ($specialities as $speciality)
+                            @foreach ($specialities as $key => $speciality)
 							<form action="{{route('specialities.destroy',$speciality->id)}}" method="post">
                                 @csrf
                                 @method('delete')
 									<tr>
-										<th>{{$from ++}}</th>
-										<td>{{$speciality->id}}</td>
+										<th>{{$specialities->firstItem() + $key}}</th>
 										<td>{{$speciality->name}}</td>
 										<td>{{$speciality->parent}}</td>
 										<td class="d-none d-md-table-cell">
@@ -47,22 +46,16 @@
 										</td>
 									</tr>
 							</form>
-                            @endforeach							
+                            @endforeach
 						</tbody>
 
 					</table>
+                        {{ $specialities->links('pagination::bootstrap-4') }}
 				</div>
 			</div>
 		</div>
-
-        <div class="row">
-            <div class="col-md-12">
-                {{$specialities->links('pagination::bootstrap-5')}}
-            </div>
-        </div>
-
 	</div>
 </main>
 
-   
+
 @endsection
