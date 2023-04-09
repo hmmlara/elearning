@@ -46,15 +46,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-                        <div class="d-flex mt-3 justify-content-between">
-                            <div class="p-3">
-                                Showing {{ $schedules->firstItem() }} to {{ $schedules->lastItem() }} of total {{ $schedules->total() }}
-                            </div>
-                            <div class="pagination">
                                 {{ $schedules->links('pagination::bootstrap-4') }}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
