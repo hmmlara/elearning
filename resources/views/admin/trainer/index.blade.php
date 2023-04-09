@@ -35,9 +35,9 @@
 						</thead>
 						<tbody>
 
-                        @foreach ($trainers as $trainer)
+                        @foreach ($trainers as $key => $trainer)
                             <tr>
-                                <td>{{$from++}}</td>
+                                <td>{{$trainers->firstItem() + $key}}</td>
                                 <td class="d-none d-xl-table-cell">{{$trainer->name}}</td>
                                 <td class="d-none d-xl-table-cell">{{$trainer->email}}</td>
                                 <td class="d-none d-xl-table-cell">{{$trainer->phone}}</td>
@@ -52,17 +52,13 @@
                             </tr>
                         @endforeach
 
-						
+
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-        <div class="row mt-2">
-            <div class="col-md-12">
-                {{$trainers->links('pagination::bootstrap-5')}}
-            </div>
-        </div>
+                {{$trainers->links('pagination::bootstrap-4')}}
 	</div>
 </main>
 
