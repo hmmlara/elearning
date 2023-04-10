@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('topics_name');
             $table->string('description');
             $table->foreign('course_id')
-                ->references('id')->on('courses')
+                ->references('id')->on('course')
                 ->onDelete('cascade');
             $table->timestamps();
         });

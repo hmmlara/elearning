@@ -1,0 +1,37 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\User;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        User::create([
+            'name' => 'David',
+            'email' => 'david@gmail.com',
+            'password' => bcrypt('asdf')
+
+        ]);
+        User::create([
+            'name' => 'Hla Hla',
+            'email' => 'hla@gmail.com',
+            'password' => bcrypt('asdf')
+
+        ]);
+        User::create([
+            'name' => 'Aye Aye',
+            'email' => 'aye@gmail.com',
+            'password' => bcrypt('asdf')
+
+        ]);
+    }
+}

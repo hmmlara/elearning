@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->foreign('course_id')
-                ->references('id')->on('courses')
+                ->references('id')->on('course')
                 ->onDelete('cascade');
             $table->timestamps();
         });

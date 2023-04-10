@@ -22,7 +22,7 @@ return new class extends Migration
                 ->references('id')->on('trainers')
                 ->onDelete('cascade');
             $table->foreign('course_id')
-                ->references('id')->on('courses')
+                ->references('id')->on('course')
                 ->onDelete('cascade');
             $table->foreign('batch_id')
                 ->references('id')->on('batches')
