@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Batch;
 use App\Models\Course;
 use App\Models\Trainer;
-use App\Models\Course_trainer;
-
+use App\Models\CourseTrainer;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -62,7 +61,7 @@ class BatchController extends Controller
             'end_date' => $request->end_date,
         ]);
         $batch_id = Batch::where('batch_name', $request->batch_name)->get('id');
-        Course_trainer::create([
+        CourseTrainer::create([
             'trainer_id' => $request->trainer_id,
             'course_id' => $request->course_id,
             'batch_id' => $batch_id[0]['id']
