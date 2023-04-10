@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class homeController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +18,7 @@ class homeController extends Controller
         //
         $categories = Category::all();
 
-        dd($categories);
+        // dd($categories);
         $courses = [];
         $index = 0;
         foreach($categories as $category){
@@ -57,8 +56,8 @@ class homeController extends Controller
 
         // dd($categories);
 
-        //$all_course = Course::all();
-        // return view('index', ['categories'=>$categories, 'courses'=>$courses,'selection' => $select ]);
+        // $all_course = Course::all();
+        return view('index', ['categories'=>$categories, 'courses'=>$courses,'selection' => $select]);
     }
 
     /**
