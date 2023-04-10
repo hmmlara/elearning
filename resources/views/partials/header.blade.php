@@ -68,7 +68,7 @@
             </div>
             <div class="nav-item text-white btn btn-primary py-4 px-lg-5 d-none d-lg-block" >
                 <a href="#" class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown">{{auth()->user()->name}}</a>
-                <div class="dropdown-menu fade-down m-0">
+                <div class="dropdown-menu fade-down">
                     <a href="{{route('logout')}}" class="dropdown-item">Logout</a>
                 </div>
             </div>

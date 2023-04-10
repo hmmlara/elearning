@@ -9,7 +9,7 @@
 
         <div class="row mb-3">
             <div class="col-md-3">
-                <a href="#" class="btn btn-success">Add New Course</a>
+                <a href="{{route('categories.create')}}" class="btn btn-success">Add New Category</a>
             </div>
         </div>
 
@@ -18,32 +18,33 @@
                 <div class="card flex-fill">
                     <div class="card-header">
 
-                        <h5 class="card-title mb-0">Courses</h5>
+                        <h5 class="card-title mb-0">Category</h5>
                     </div>
                     <table class="table table-hover my-0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>Date</th>
+                                <th>Created date</th>
+                                <th>Updated date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                                <td>Project Apollo</td>
-                                <td class="d-none d-xl-table-cell">01/01/2021</td>
-                                <td class="d-none d-xl-table-cell">31/06/2021</td>
-                                <td><span class="badge bg-success">Done</span></td>
-                                <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                            </tr> --}}
                             @foreach ($categories as $category)
-                                <tr>
-                                    <td>{{$from++}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td>{{$category->created_at}}</td>
-                                    <th class="d-none d-md-table-cell"><a href="" class="btn btn-success">View</a><a href="" class="btn btn-warning">Edit</a><a href="" class="btn btn-danger">Delete</a></th>
-                                </tr>
+                                <form action="{{route('categories.destroy',$category->id)}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <tr>
+                                        <td>{{$from++}}</td>
+                                        <td>{{$category->name}}</td>
+                                        <td>{{$category->created_at}}</td>
+                                        <td>{{$category->updated_at}}</td>
+                                        <td class="d-none d-md-table-cell">
+                                            <a href="{{route('categories.edit',$category->id)}}" class="btn btn-warning">Edit</a>
+                                            <button class="btn btn-danger" type="submit">Delete</button></td>
+                                    </tr>
+                                </form>
                             @endforeach
                         </tbody>
                     </table>

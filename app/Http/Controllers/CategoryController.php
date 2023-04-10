@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -27,6 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,9 +36,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CategoryRequest $category)
     {
         //
+        // dd(
+        //     $category
+        // );
+        date_default_timezone_set("Asia/Yangon");
+        $date_now=date('Y-m-d H:i:s');
+        Category::create([
+            'name'=>$category->name,
+            'created_at'=>$date_now,
+        ]);
+        return redirect()->route('categories.index');
+
     }
 
     /**
@@ -49,6 +61,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -60,6 +73,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         //
+        $category=Category::find($id);
+        return view('admin.category.edit',['category'=>$category]);
     }
 
     /**
@@ -69,9 +84,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, CategoryRequest $category)
     {
         //
+        date_default_timezone_set("Asia/Yangon");
+        $date_now=date('Y-m-d H:i:s');
+        $category_update=Category::find($id);
+        $category_update->name=$category->input('name');
+        $category_update->updated_at=$date_now;
+        $category_update->save();
+        return redirect()->route('categories.index');
+
     }
 
     /**
@@ -82,6 +105,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category_delete=Category::find($id);
+        $category_delete->delete();
+        return redirect()->route('categories.index');
     }
 }

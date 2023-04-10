@@ -59,7 +59,7 @@ class CourseController extends Controller
 
             ]
             );
-            dd($request);
+            // dd($request);
             // dd($request->file('feature_image'));
         $file=$request->file('feature_image');
         $name=$request->file('feature_image')->getClientOriginalName();
