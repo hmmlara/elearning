@@ -14,4 +14,5 @@ class TrainerSpeciality extends Model
 //     public function specilalities(){
 //         return $this->belongsToMany(Speciality::class,'trainer_specialities');
 //     }
+    protected $fillable=['trainer_id','speciality_id'];
  }

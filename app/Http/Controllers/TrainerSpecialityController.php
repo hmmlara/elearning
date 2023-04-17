@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Speciality;
 use App\Models\Trainer;
 use App\Models\TrainerSpeciality;
+use Database\Seeders\TrainerSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TrainerSpecialityController extends Controller
 {
@@ -20,31 +22,9 @@ class TrainerSpecialityController extends Controller
          $trainers=Trainer::paginate(1);
         $from=$trainers->firstItem();
 
-        //$specialities=Speciality::find(1);
-        // dd($specialities->trainers);
+        
         return view('admin.trainerspeciality.index',['trainers'=>$trainers,'from'=>$from]);
-      // return view('admin.trainerspeciality.index')
-       // var_dump($trainer);
-       //var_dump($trainers->specialities());
-    //    foreach($trainers->specialities as $speciality)
-    //    {
-    //         echo $speciality->name;
-    //    }
-    //    $specialities=Speciality::find(1);
-    //    foreach($specialities->trainers as $trainer)
-    //    {
-    //     echo $trainer->name;
-    //    }
-    // //    foreach($trainers as $trainer)
-    // //    {
-    //     echo $trainer->speciality->name;
-    //    }
-      
-    //    $specialities=Speciality::all();
-    //    foreach($specialities as $speciality){
-    //     echo $speciality->name;
-    //    }
-       // return view('admin.trainerspeciality.index',['trainers'=>$trainer]);
+    //   
     }
 
     /**
@@ -55,6 +35,9 @@ class TrainerSpecialityController extends Controller
     public function create()
     {
         //
+        $trainer=Trainer::all();
+        $speciality=Speciality::all();
+        return view('admin.trainerspeciality.create',['trainers'=>$trainer,'specialities'=>$speciality]);
     }
 
     /**
@@ -65,7 +48,27 @@ class TrainerSpecialityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'trainer_id'=>'required',
+            'speciality_id'=>'required',
+        ]);
+        $trainer_id=$request->input('trainer_id');
+        $selected_specialities = $request->input('speciality_id', []);
+        $getspecialities=DB::table('trainer_specialities')->where('trainer_id',$trainer_id)->pluck('speciality_id')->toArray();
+        for($i=0;$i<count($selected_specialities);$i++)
+            {
+                $value=$selected_specialities[$i];
+                if(!(in_array($value, $getspecialities ))){
+                    DB::table('trainer_specialities')->insert( [
+                        'trainer_id'=>$trainer_id,
+                        'speciality_id'=>$selected_specialities[$i],
+                        ] );
+                }
+            }
+
+            
+       return redirect()->route('trainer_speciality.index');
     }
 
     /**
@@ -77,6 +80,8 @@ class TrainerSpecialityController extends Controller
     public function show($id)
     {
         //
+        $trainer=Trainer::find($id);
+        return view('admin.trainerspeciality.view',['trainer'=>$trainer]);
     }
 
     /**
@@ -87,7 +92,15 @@ class TrainerSpecialityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $trainer_name=DB::table('trainers')->where('id',$id)->get();
+        $specialities=Speciality::all();
+
+        
+        $getspecialities=DB::table('trainer_specialities')
+                            ->join('specialities','trainer_specialities.speciality_id','=','specialities.id')
+                            ->where('trainer_id',$id)
+                            ->get();
+        return view('admin.trainerspeciality.edit',['used_speciality'=>$getspecialities,'trainer_name'=>$trainer_name[0],'allspeciality'=>$specialities]);
     }
 
     /**
@@ -97,12 +110,31 @@ class TrainerSpecialityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
     public function update(Request $request, $id)
-    {
-        //
-    }
+{
+    $data=Trainer::find($id);
+      
 
-    /**
+    $data->specialities()->detach();
+
+    $trainer_id=$id;
+    $selected_specialities = $request->input('speciality_id', []);
+    $getspecialities=DB::table('trainer_specialities')->where('trainer_id',$trainer_id)->pluck('speciality_id')->toArray();
+    for($i=0;$i<count($selected_specialities);$i++)
+        {
+            $value=$selected_specialities[$i];
+            if(!(in_array($value, $getspecialities ))){
+                DB::table('trainer_specialities')->insert( [
+                    'trainer_id'=>$trainer_id,
+                    'speciality_id'=>$selected_specialities[$i],
+                    ] );
+            }
+        }
+        return redirect()->route('trainer_speciality.index');
+    
+}
+   /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -110,6 +142,18 @@ class TrainerSpecialityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $request=TrainerSpeciality::find($id);
+       
+        // DB::table('trainer_specialities')
+        //     ->where('trainer_id', '=', $id)
+        //     ->delete();
+
+        // dd($id);
+        // $request->delete();
+        // dd($request);
+        TrainerSpeciality::where('trainer_id', $id)->delete();
+
+        return redirect()->route('trainer_speciality.index');
     }
+
 }

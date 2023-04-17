@@ -8,7 +8,7 @@
         <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
        <div class="row mb-3">
-        <div class="col-md-3"><a href="" class="btn btn-success">Add new course</a></div>
+        <div class="col-md-3"><a href="{{route('courses.create')}}" class="btn btn-success">Add new course</a></div>
        </div>
 
        
@@ -47,7 +47,7 @@
                                     <td>{{$course->total_topics}}</td>
                                     <td>{{$course->fee}}</td>
                                     <td class='d-none d-md-table-cell'><a href="" class="btn btn-success">View</a>
-                                        <a href="" class="btn btn-success">Edit</a>
+                                        <a href="{{route('courses.edit',$course->id)}}" class="btn btn-success">Edit</a>
                                         <a href="" class="btn btn-success">Delete</a>
                                     </td>
                                 </tr>   

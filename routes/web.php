@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TrainerSpecialityController;
 use App\Models\TrainerSpeciality;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+
+Route::resource('/',HomeController::class);
 
 Route::get('about',function(){
     return view('about');

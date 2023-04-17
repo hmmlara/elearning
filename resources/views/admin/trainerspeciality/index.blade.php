@@ -8,7 +8,7 @@
         <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
        <div class="row mb-3">
-        <div class="col-md-3"><a href="" class="btn btn-success">Add new TrainerSpeciality</a></div>
+        <div class="col-md-3"><a href="{{route('trainer_speciality.create')}}" class="btn btn-success">Add new TrainerSpeciality</a></div>
        </div>
 
        
@@ -33,24 +33,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($trainers as $trainer)
-                                <tr>
-                                    <td>{{$from++}}</td>
+                        @foreach ($trainers as $trainer)
+                    <form action="{{route('trainer_speciality.destroy',$trainer->id)}}" method="post">
+                        @csrf
+                        @method('delete')
 
-                                    <td>{{$trainer->name}}</td>
-                                    <td>
-                                        @foreach($trainer->specialities as $speciality)
-                                            
-                                            <span>{{$speciality->name}}</span>
-                                        @endforeach
-                                    </td>
-                                    {{-- <td>{{$trainerspeciality->speciality_id}}</td> --}}
-                                    <td class='d-none d-md-table-cell'><a href="" class="btn btn-success">View</a>
-                                        <a href="" class="btn btn-success">Edit</a>
-                                        <a href="" class="btn btn-success">Delete</a>
-                                    </td>
-                                </tr>   
-                            @endforeach
+                        @if(count($trainer->specialities)!=0)
+                            <tr>
+                                <td>{{$from++}}</td>
+    
+                                <td>{{$trainer->name}}</td>
+                                <td>
+                                    @foreach($trainer->specialities as $speciality)
+                                        
+                                        <span>{{$speciality->name}}</span>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a href="{{route('trainer_speciality.show',$trainer->id)}}" class="btn btn-primary">View</a>
+                                    <a href="{{route('trainer_speciality.edit',$trainer->id)}}" class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-outline-danger">Delete</button>
+                                </td>
+                               
+                               
+                            </tr>  
+                        
+                        @endif
+                         
+                    </form>
+                    @endforeach
+
+
+                           
                            
                         </tbody>
                     </table>
