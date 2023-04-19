@@ -32,12 +32,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($topicLessons as $topicLesson)
+                            @foreach ($topicLessons as $key => $topicLesson)
                                 <form action="{{ route('topicLesson.destroy', $topicLesson->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <tr>
-                                        <td>{{ $from++ }}</td>
+                                        <td>{{ $topicLessons->firstItem() + $key }}</td>
                                         {{-- //topic==model ထဲက function name --}}
                                         <td>{{ $topicLesson->topic->topic_name }}</td>
                                         <td class="d-none d-xl-table-cell">{{ $topicLesson->lesson_name }}</td>
@@ -58,12 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {{-- //pagination က $topicLessons ဆိုတာက model တခုလုံးကိုေပျာ --}}
-                    {{ $topicLessons->links('pagination::bootstrap-5') }}
-                </div>
-            </div>
+            {{ $topicLessons->links('pagination::bootstrap-4') }}
 
         </div>
     </main>

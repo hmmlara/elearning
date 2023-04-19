@@ -51,7 +51,7 @@ class TopicController extends Controller
     {
 //        dd($request->all());
         $request->validate([
-            'topics_name' => 'required',
+            'topic_name' => 'required',
             'course_id' => 'required',
             'description' => 'required',
         ]);
@@ -62,16 +62,16 @@ class TopicController extends Controller
 //        dd($request->topics_name);
 
 
-        if (count($request->topics_name) == count($request->description))
+        if (count($request->topic_name) == count($request->description))
         {
-            for($i=0;$i<count($request->topics_name);$i++){
+            for($i=0;$i<count($request->topic_name);$i++){
                 $course_id = $request->course_id;
-                $topics_name = $request->topics_name[$i] ?? '-----';
+                $topics_name = $request->topic_name[$i] ?? '-----';
                 $description = $request->description[$i] ?? '-----';
 
                 Topic::create([
                    'course_id' => $course_id,
-                    'topics_name' => $topics_name,
+                    'topic_name' => $topics_name,
                     'description' => $description
                 ]);
             }

@@ -35,7 +35,7 @@
                                 <th class="d-none d-xl-table-cell">Action</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="topics_name[]" placeholder="Enter Topic" class="form-control" /></td>
+                                <td><input type="text" name="topic_name[]" placeholder="Enter Topic" class="form-control" /></td>
                                 <td><input type="text" name="description[]" placeholder="Enter description" class="form-control" /></td>
                                 <td><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
                             </tr>
@@ -65,7 +65,7 @@
 
             ++i;
             let output =  `<tr>
-                    <td><input type="text" name="topics_name[]" placeholder="Enter Topic" class="form-control" /></td>
+                    <td><input type="text" name="topic_name[]" placeholder="Enter Topic" class="form-control" /></td>
                     <td><input type="text" name="description[]" placeholder="Enter description" class="form-control" /></td>
                     <td><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
                     </tr>`;

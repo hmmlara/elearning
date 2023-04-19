@@ -16,11 +16,11 @@ class FECourseController extends Controller
         return view('courses',['courses'=>$courses]);
     }
 
-//    public function courseShow()
-//    {
-////        $course = Course::find($id);
-////        dd($course);
-//        return view('courseDetails');
-//
-//    }
+   public function courseShow($id)
+   {
+       $course = Course::find($id);
+    //    dd($course);
+       return view('courseDetails',['courses' => $course]);
+
+   }
 }

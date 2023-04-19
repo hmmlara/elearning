@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Trainer;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TrainerSeeder extends Seeder
@@ -16,21 +15,20 @@ class TrainerSeeder extends Seeder
     public function run()
     {
         Trainer::create([
-            'name' => 'Aung Aung',
-            'email' => 'aung@gmail.com',
-            'phone' => '0938383838',
-            'education' => 'ME(IT)',
-            'working_experience' => '10 years in IT fields',
-            'description' => 'Knowledge in JAVA and C++'
+            'name' => 'Mr. Leo Backham',
+            'email' => 'leo@gmail.com',
+            'phone' =>  '09374927493',
+            'education' =>  'Master of IT',
+            'experience' => 'more than 5 years',
+            'description' => 'knowledge in Java and C#'
         ]);
         Trainer::create([
-            'name' => 'Kyaw Swar',
-            'email' => 'kyawswar@gmail.com',
-            'phone' => '0938383838',
-            'education' => 'PhD(IT)',
-            'working_experience' => '14 years in IT fields',
-            'description' => 'Knowledge in JAVA and PHP'
+            'name' => 'Dr. William',
+            'email' => 'william@gmail.com',
+            'phone' =>  '09374982739',
+            'education' =>  'Master of Computing',
+            'experience' => 'more than 5 years',
+            'description' => 'knowledge in Cloud Computing'
         ]);
-
     }
 }

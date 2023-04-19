@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Trainer extends Model
 {
     use HasFactory;
+
+    protected $table='trainers';
+    protected $fillable =[
+        'name',
+        'email',
+        'phone',
+        'education',
+        'experience',
+        'description',
+        'trainer_photo'
+    ];
+
+    public function batches(){
+        return $this->belongsToMany(Batch::class, 'course_trainers');
+    }
+    public function courses(){
+        return $this->belongsToMany(Course::class, 'course_trainers');
+    }
 }

@@ -27,7 +27,7 @@
                                                 <select name="topic_id" id="" class="form-select">
                                                     <option value="">Choose Topic</option>
                                                     @foreach ($topics as $topic)
-                                                        <option value="{{ $topic->id }}">{{ $topic->topics_name }}
+                                                        <option value="{{ $topic->id }}">{{ $topic->topic_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>

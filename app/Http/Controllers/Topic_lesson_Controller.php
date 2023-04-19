@@ -17,9 +17,8 @@ class Topic_lesson_Controller extends Controller
     public function index()
     {
         $topicLessons=Topics_lesson::paginate(3);
-        $from=$topicLessons->firstItem();
-        $to=$topicLessons->lastItem();
-        return view('admin.topic_lesson.index',['topicLessons'=>$topicLessons,'from'=>$from]);
+
+        return view('admin.topic_lesson.index',['topicLessons'=>$topicLessons]);
     }
 
     /**

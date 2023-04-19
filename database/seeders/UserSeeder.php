@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,23 +15,27 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'David',
-            'email' => 'david@gmail.com',
-            'password' => bcrypt('asdf')
+        //
+        $users = [
+            [
+                'name' => 'Harry',
+                'email' => 'harry@gmail.com',
+                'password' =>Hash::make('123456'),
+            ],
+            [
+                'name' => 'David',
+                'email' => 'david@gmail.com',
+                'password' =>Hash::make('123456'),
+            ],
+            [
+                'name' => 'Keith',
+                'email' => 'keith@gmail.com',
+                'password' =>Hash::make('123456'),
+            ],
+        ];
 
-        ]);
-        User::create([
-            'name' => 'Hla Hla',
-            'email' => 'hla@gmail.com',
-            'password' => bcrypt('asdf')
-
-        ]);
-        User::create([
-            'name' => 'Aye Aye',
-            'email' => 'aye@gmail.com',
-            'password' => bcrypt('asdf')
-
-        ]);
+        foreach($users as $user){
+            User::create($user);
+        }
     }
 }

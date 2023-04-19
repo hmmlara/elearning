@@ -25,8 +25,8 @@
                             @foreach($topics as $topic)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $topic->title }}</td>
-                                    <td>{{ $topic->topics_name }}</td>
+                                    <td>{{ $topic->course->title }}</td>
+                                    <td>{{ $topic->topic_name }}</td>
                                     <td>{{ $topic->description }}</td>
                                     <td>
                                         <button class="btn btn-warning">Edit</button>

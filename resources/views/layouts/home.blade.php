@@ -1,5 +1,7 @@
-@include('partials.nav_front')
+@include('partials.header')
+
 
 @yield('content')
 
-@include('partials.footer_front')
+
+@include('partials.foot')

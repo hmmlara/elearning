@@ -3,7 +3,9 @@
         <div class="row text-muted">
             <div class="col-6 text-start">
                 <p class="mb-0">
-                    <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> - <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin Template</strong></a>								&copy;
+                    <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> - <a
+                        class="text-muted" href="https://adminkit.io/" target="_blank"><strong>Bootstrap Admin
+                            Template</strong></a> &copy;
                 </p>
             </div>
             <div class="col-6 text-end">
@@ -40,7 +42,9 @@
         new Chart(document.getElementById("chartjs-dashboard-line"), {
             type: "line",
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                    "Dec"
+                ],
                 datasets: [{
                     label: "Sales ($)",
                     fill: true,
@@ -134,7 +138,9 @@
         new Chart(document.getElementById("chartjs-dashboard-bar"), {
             type: "bar",
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                    "Dec"
+                ],
                 datasets: [{
                     label: "This year",
                     backgroundColor: window.theme.primary,
@@ -175,9 +181,9 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var markers = [{
-            coords: [31.230391, 121.473701],
-            name: "Shanghai"
-        },
+                coords: [31.230391, 121.473701],
+                name: "Shanghai"
+            },
             {
                 coords: [28.704060, 77.102493],
                 name: "Delhi"
@@ -253,5 +259,11 @@
 </script>
 
 </body>
+
+</html>
+
+</html>
+
+</html>
 
 </html>
